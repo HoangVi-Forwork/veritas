@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: appTheme,
       debugShowCheckedModeBanner: false,
       getPages: pages,
-      initialRoute: ROUTE_SPLASH_SCREEN,
+      initialRoute: VtsRoute.ROUTE_SPLASH_SCREEN,
     );
   }
 }
