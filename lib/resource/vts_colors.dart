@@ -20,6 +20,9 @@ class VtsColors {
 
   // Order
   static var appDisableColor = HexColor('##808080');
+
+  // Color Using ARGB
+  static var deepGreenColor = const Color.fromARGB(255, 26, 64, 28);
 }
 
 // Parse hex to color.

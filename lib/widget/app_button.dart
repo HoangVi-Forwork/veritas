@@ -9,9 +9,9 @@ class VtsConfirmButton extends StatelessWidget {
   final String? title;
   final bool enable;
   final double? textStyle;
-  final HexColor? backgroudColor;
-  final HexColor? textColor;
-  final HexColor? sideColor;
+  final Color? backgroudColor;
+  final Color? textColor;
+  final Color? sideColor;
   final EdgeInsets? padding;
   final double? width;
   final double? hight;

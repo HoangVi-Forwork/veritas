@@ -41,47 +41,50 @@ class AppTextField extends StatefulWidget {
   final TextAlign? textAlign;
   final InputDecoration? decoration;
   final double? borderRadius;
+  final bool isCheckValid;
 
-  const AppTextField(
-      {super.key,
-      this.controller,
-      this.placeholder,
-      this.secured,
-      this.textColor,
-      this.textFontSize,
-      this.fillColor,
-      this.errorTextColor,
-      this.placeholderTextColor,
-      this.focusBorderColor,
-      this.normalBorderColor,
-      this.onClear,
-      this.onChanged,
-      this.onSubmitted,
-      this.onTap,
-      this.keyboardType,
-      this.inputFormatters,
-      this.textInputAction,
-      required this.isRequired,
-      required this.autoFocus,
-      this.maxLines,
-      this.minLines,
-      this.maxLength,
-      this.errorText,
-      this.suffixIcon,
-      this.prefixIcon,
-      this.initialText,
-      this.borderSize,
-      this.borderStyle,
-      required this.expands,
-      this.cursorColor,
-      required this.showClearButton,
-      required this.enabled,
-      this.focusNode,
-      this.onPrefixIconClick,
-      this.textStyle,
-      this.textAlign,
-      this.decoration,
-      this.borderRadius});
+  const AppTextField({
+    super.key,
+    this.controller,
+    this.placeholder,
+    this.secured,
+    this.textColor,
+    this.textFontSize,
+    this.fillColor,
+    this.errorTextColor,
+    this.placeholderTextColor,
+    this.focusBorderColor,
+    this.normalBorderColor,
+    this.onClear,
+    this.onChanged,
+    this.onSubmitted,
+    this.onTap,
+    this.keyboardType,
+    this.inputFormatters,
+    this.textInputAction,
+    required this.isRequired,
+    required this.autoFocus,
+    this.maxLines,
+    this.minLines,
+    this.maxLength,
+    this.errorText,
+    this.suffixIcon,
+    this.prefixIcon,
+    this.initialText,
+    this.borderSize,
+    this.borderStyle,
+    required this.expands,
+    this.cursorColor,
+    required this.showClearButton,
+    required this.enabled,
+    this.focusNode,
+    this.onPrefixIconClick,
+    this.textStyle,
+    this.textAlign,
+    this.decoration,
+    this.borderRadius,
+    this.isCheckValid = false,
+  });
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
@@ -100,9 +103,18 @@ class _AppTextFieldState extends State<AppTextField> {
     _isShowClear = widgetInitialText.isNotEmpty && widget.enabled;
   }
 
+  bool _isEmail(String email) {
+    final emailRegex = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
+    return emailRegex.hasMatch(email);
+  }
+
+  bool _isNumric(String phone) {
+    return double.tryParse(phone) != null;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       textAlignVertical: TextAlignVertical.top,
       textAlign: widget.textAlign ?? TextAlign.left,
       focusNode: widget.focusNode,
@@ -124,13 +136,39 @@ class _AppTextFieldState extends State<AppTextField> {
         widget.onChanged?.call(text);
         setState(() {});
       },
-      onSubmitted: widget.onSubmitted,
+      // onSubmitted: widget.onSubmitted,
+      validator: (value) {
+        if (widget.isCheckValid) {
+          if (value == null || value.isEmpty) {
+            return 'Vui lòng điền đầy đủ thông tin';
+          } else if (!widget.isRequired && !_isEmail(value)) {
+            return 'Vui lòng nhập email hợp lệ';
+          } else if (_isNumric(value)) {
+            if (value.length < 10 || value.length > 10) {
+              return 'Vui lòng nhập số điện thoại hợp lệ';
+            }
+          }
+        }
+        return null;
+      },
       onTap: widget.onTap,
       keyboardType: widget.keyboardType,
       obscureText: widget.secured ?? false,
       enableSuggestions: false,
+      style: widget.textStyle?.copyWith(
+            color: widget.textColor ??
+                VtsColors.textLightColor, // Thay đổi màu chữ ở đây
+          ) ??
+          TextStyle(
+            color: widget.textColor ?? VtsColors.textLightColor,
+            fontSize: widget.textFontSize,
+          ),
       decoration: InputDecoration(
         counterText: '',
+        contentPadding: const EdgeInsets.only(
+          left: VtsDimens.w15 - 3,
+          right: VtsDimens.w15 - 3,
+        ),
         focusedBorder: OutlineInputBorder(
           borderRadius:
               BorderRadius.circular(widget.borderRadius ?? VtsDimens.corner),
@@ -175,7 +213,7 @@ class _AppTextFieldState extends State<AppTextField> {
         errorText: widget.errorText,
         hintText: widget.placeholder,
         hintStyle: TextStyle(
-          fontSize: widget.textFontSize ?? VtsDimens.textSmall,
+          fontSize: widget.textFontSize ?? VtsDimens.textSmall - 2,
           color: widget.placeholderTextColor ?? Colors.grey,
         ),
       ),

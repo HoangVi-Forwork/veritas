@@ -69,7 +69,7 @@ class GrainyContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(12.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
+            color: const Color.fromARGB(255, 3, 3, 3).withOpacity(0.5),
             spreadRadius: 2.0,
             blurRadius: 4.0,
             offset: const Offset(2.0, 2.0),

@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:veritas/schema/screen_data.dart';
 import 'package:veritas/utils/network_utils.dart';
 import 'package:veritas/utils/ui_utils.dart';
 
