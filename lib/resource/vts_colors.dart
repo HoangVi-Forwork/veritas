@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class VtsColors {
   // BACKGROUND COLORS
-  static var primaryColor = HexColor('#4f4888');
+  // static var primaryColor = HexColor('#4f4888');
+  static var primaryColor = HexColor('#57729d');
   static var backgroundDarkColor = HexColor('#2c2f38');
   static var backgroundLightColor = HexColor('#ffffff');
   static var whileColors = HexColor('#ffffff');
@@ -19,6 +20,9 @@ class VtsColors {
 
   // Order
   static var appDisableColor = HexColor('##808080');
+
+  // Color Using ARGB
+  static var deepGreenColor = const Color.fromARGB(255, 26, 64, 28);
 }
 
 // Parse hex to color.

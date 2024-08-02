@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 
 class UiUtil {
   UiUtil._();
@@ -110,4 +112,27 @@ class UiUtil {
   // animation duration
   static const defaultAnimationDuration = Duration(milliseconds: 500);
   static const fastAnimationDuration = Duration(milliseconds: 300);
+
+  // Toast
+  static void showToast(String message) {
+    Get.showSnackbar(
+      GetSnackBar(
+        message: message,
+        snackPosition: SnackPosition.BOTTOM,
+        snackStyle: SnackStyle.FLOATING,
+        duration: const Duration(seconds: 2),
+      ),
+    );
+  }
+
+  // hide keyboard
+  static void hideKeyboard() => FocusManager.instance.primaryFocus?.unfocus();
+
+  // loading
+  static void showHUBLoading([Color? color]) {
+    const SpinKitWaveSpinner(
+      color: Colors.pink,
+      size: 50.0,
+    );
+  }
 }
