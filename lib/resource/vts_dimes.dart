@@ -178,4 +178,10 @@ class VtsDimens {
   static const double iconDefaultSize = 24;
   static const double iconSmallSize = 18;
   static const double tabDefaultHeight = 72;
+
+  // Height of buttons
+  static const double heighOfButton48 = 48;
+  static const double heighOfButton56 = 56;
+
+  static const double buttonInfinity = double.infinity;
 }

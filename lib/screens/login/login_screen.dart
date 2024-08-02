@@ -179,7 +179,9 @@ class LoginScreen extends StatelessWidget {
                               title: _controller.isRegisterScreen != true
                                   ? 'Login'
                                   : 'Register',
-                              onTap: _loginConfirm,
+                              onTap: _controller.isRegisterScreen != true
+                                  ? _controller.loginConfirm
+                                  : null,
                               backgroudColor:
                                   _controller.isRegisterScreen != true
                                       ? VtsColors.primaryColor
@@ -273,15 +275,5 @@ class LoginScreen extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  void _loginConfirm() {
-    if (_formKey.currentState?.validate() ?? false) {
-      // Form is valid
-      print('Form is valid');
-    } else {
-      // Form is invalid
-      print('Form is invalid');
-    }
   }
 }

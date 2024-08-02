@@ -43,6 +43,7 @@ class GrainyContainer extends StatelessWidget {
   final Alignment? alignment;
   final BoxDecoration? decoration;
   final Widget? child;
+  final bool isWithBoxShadow;
 
   const GrainyContainer({
     super.key,
@@ -54,6 +55,7 @@ class GrainyContainer extends StatelessWidget {
     this.alignment = Alignment.topLeft,
     this.decoration,
     this.child,
+    this.isWithBoxShadow = true,
   });
 
   @override
@@ -67,14 +69,16 @@ class GrainyContainer extends StatelessWidget {
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(12.0),
-        boxShadow: [
-          BoxShadow(
-            color: const Color.fromARGB(255, 3, 3, 3).withOpacity(0.5),
-            spreadRadius: 2.0,
-            blurRadius: 4.0,
-            offset: const Offset(2.0, 2.0),
-          ),
-        ],
+        // boxShadow: [
+        //   isWithBoxShadow == true
+        //       ? BoxShadow(
+        //           color: const Color.fromARGB(255, 3, 3, 3).withOpacity(0.5),
+        //           spreadRadius: 2.0,
+        //           blurRadius: 4.0,
+        //           offset: const Offset(2.0, 2.0),
+        //         )
+        //       : const BoxShadow(),
+        // ],
       ),
       child: CustomPaint(
         painter: GrainyPainter(grainColor: Colors.white),

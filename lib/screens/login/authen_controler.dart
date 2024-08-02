@@ -27,6 +27,18 @@ class AuthenController extends GetxController {
     isCheckBoxConfirmInfo.value = false;
   }
 
+  void navigateToLoginScreen() {
+    Get.toNamed(VtsRoute.ROUTE_LOGIN_SCREEN);
+  }
+
+  void loginConfirm() {
+    navigateToLandingScreen();
+  }
+
+  void navigateToLandingScreen() {
+    Get.offNamed(VtsRoute.ROUTE_LANDING_SCREEN);
+  }
+
   void navigateToRegistrationScreen() {
     isRegisterScreen.value = true;
     isCheckBoxConfirmInfo.value = true;
