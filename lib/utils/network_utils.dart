@@ -29,6 +29,6 @@ class NetworkUtil {
 
   Future<bool> get isOffline async {
     final result = await connectivityResult;
-    return result == ConnectivityResult.none;
+    return result == [ConnectivityResult.none];
   }
 }

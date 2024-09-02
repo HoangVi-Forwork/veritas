@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names
 import 'package:get/get.dart';
+import '../screens/splash/splash_screen.dart';
 import 'package:veritas/screens/landing/landing_controller.dart';
 import 'package:veritas/screens/login/login_screen.dart';
 import '../screens/landing/landing.dart';
@@ -9,7 +10,7 @@ import '../screens/splash/splash.dart';
 
 class VtsRoute {
   VtsRoute._();
-
+  
   // DEFINE APP ROUTE
   static const String ROUTE_SPLASH_SCREEN = '/ROUTE_SPLASH_SCREEN';
   static const String ROUTE_LOGIN_SCREEN = '/ROUTE_LOGIN_SCREEN';
@@ -50,6 +51,7 @@ final pages = [
     page: () => const LandingScreen(),
     bindings: [
       LandingBinding(),
+      MessageCenterBinding(),
     ],
     transition: Transition.fade,
   ),
