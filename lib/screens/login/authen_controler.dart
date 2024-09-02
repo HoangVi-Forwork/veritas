@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-
 import '../../router/app_route.dart';
 
 class AuthenBinding extends Bindings {
@@ -25,6 +24,18 @@ class AuthenController extends GetxController {
     super.onClose();
     isRegisterScreen.value = false;
     isCheckBoxConfirmInfo.value = false;
+  }
+
+  void navigateToLoginScreen() {
+    Get.toNamed(VtsRoute.ROUTE_LOGIN_SCREEN);
+  }
+
+  void loginConfirm() {
+    navigateToLandingScreen();
+  }
+
+  void navigateToLandingScreen() {
+    Get.offNamed(VtsRoute.ROUTE_LANDING_SCREEN);
   }
 
   void navigateToRegistrationScreen() {
