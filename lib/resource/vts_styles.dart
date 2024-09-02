@@ -13,8 +13,8 @@ final ThemeData appTheme = ThemeData(
 );
 
 // TEXT STYLE
-class CSPTextStyle {
-  CSPTextStyle._();
+class VtsTextStyle {
+  VtsTextStyle._();
 
   static TextStyle textStyleSmall = TextStyle(
     color: VtsColors.textDarkColor,
