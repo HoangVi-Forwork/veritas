@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:veritas/resource/resource.dart';
 import 'package:veritas/resource/vts_styles.dart';
 import 'package:veritas/utils/ui_utils.dart';
+import '../../router/app_route.dart';
 import 'message_center_controller.dart';
 
 class MessageCenterScreen extends StatelessWidget {
@@ -54,7 +55,15 @@ class MessageCenterScreen extends StatelessWidget {
                 final chatInfo = controller.chatDataList[index];
                 return GestureDetector(
                   onTap: () {
-                    // navigate to ChatScreen
+                    Get.toNamed(
+                      VtsRoute.ROUTER_DETAIL_CHAT_SCREEN,
+                      arguments: {
+                        'chatId': chatInfo.id,
+                        'username': chatInfo.username,
+                        'userImage': chatInfo.userImage,
+                        'chatContent': chatInfo.chatDescription,
+                      },
+                    );
                   },
                   onLongPress: () {
                     Get.dialog(

@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 import 'package:get/get.dart';
-import '../screens/splash/splash_screen.dart';
-import 'package:veritas/screens/landing/landing_controller.dart';
+import '../screens/message_center/detail/detail_chat_controller.dart';
+import '../screens/message_center/detail/detail_chat_screen.dart';
 import 'package:veritas/screens/login/login_screen.dart';
 import '../screens/landing/landing.dart';
 import '../screens/login/authen_controler.dart';
@@ -18,6 +18,7 @@ class VtsRoute {
   static const String ROUTE_LANDING_SCREEN = '/ROUTE_LANDING_SCREEN';
   static const String ROUTE_MESSAGE_CENTER_SCREEN =
       '/ROUTE_MESSAGE_CENTER_SCREEN';
+  static const String ROUTER_DETAIL_CHAT_SCREEN = '/ROUTER_DETAIL_CHAT_SCREEN';
 }
 
 // GET PAGE WITH ROUTE
@@ -60,6 +61,14 @@ final pages = [
     page: () => const MessageCenterScreen(),
     bindings: [
       MessageCenterBinding(),
+    ],
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: VtsRoute.ROUTER_DETAIL_CHAT_SCREEN,
+    page: () => const VtsDetailChatScreen(),
+    bindings: [
+      VtsDetailChatBinding(),
     ],
     transition: Transition.fade,
   ),
