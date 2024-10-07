@@ -7,7 +7,7 @@ class MockChatData {
         '1',
         'Yeu',
         'https://images.pexels.com/photos/27902794/pexels-photo-27902794/free-photo-of-a-woman-in-a-dress-is-standing-on-a-beach.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load',
-        'Qua lien nha',
+        'Qua lien nha, minh di an lau di, roi sau do di xem phim, co phim moi hay lam, di truoc 11h m cho t ve la duoc roi, di tre qua ma la',
       ),
       ChatInfo(
         '2',
