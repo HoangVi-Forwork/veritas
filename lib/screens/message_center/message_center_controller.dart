@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:get/get.dart';
 import 'package:veritas/module/chat_info.dart';
 
@@ -12,7 +11,6 @@ class MessageCenterBinding extends Bindings {
 }
 
 class MessageCenterController extends GetxController {
-
   // Define variables
   var chatDataList = <ChatInfo>[].obs;
   var groupChatDataList = <ChatInfo>[].obs;
