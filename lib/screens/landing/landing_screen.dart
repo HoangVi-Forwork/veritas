@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:veritas/resource/resource.dart';
+import 'package:veritas/screens/veritas_feed/veritas_feed_screen.dart';
 
 import '../../resource/vts_styles.dart';
 import '../message_center/message_center_screen.dart';
@@ -22,12 +23,7 @@ class LandingScreen extends StatelessWidget {
 
     final List<Widget> pages = [
       const MessageCenterScreen(),
-      const Center(
-        child: Text(
-          'Undeveloped feature \n(01)',
-          textAlign: TextAlign.center,
-        ),
-      ),
+      const VeritasFeedScreen(),
       const Center(
         child: Text('Undeveloped feature \n(02)', textAlign: TextAlign.center),
       ),
