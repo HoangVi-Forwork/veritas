@@ -7,4 +7,14 @@ class VeritasFeedBinding extends Bindings {
   }
 }
 
-class VeritasFeedController extends GetxController {}
+class VeritasFeedController extends GetxController {
+  var isCommentPanelVisible = false.obs;
+
+  void toggleCommentPanel() {
+    isCommentPanelVisible.value = !isCommentPanelVisible.value;
+  }
+
+  void hideCommentPanel() {
+    isCommentPanelVisible.value = false;
+  }
+}

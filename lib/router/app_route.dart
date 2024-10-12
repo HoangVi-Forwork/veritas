@@ -57,6 +57,7 @@ final pages = [
     bindings: [
       LandingBinding(),
       MessageCenterBinding(),
+      VeritasFeedBinding(),
     ],
     transition: Transition.fade,
   ),

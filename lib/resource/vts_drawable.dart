@@ -10,4 +10,6 @@ class VtsDrawable {
   static const appBackgroundRain = '${baseAsset}app_background_rain.png';
   static const googleLogo = '${baseAsset}google.svg';
   static const facebookLogo = '${baseAsset}facebook.svg';
+  static const heardIcon = '${baseAsset}heart-regular.svg';
+  static const commentIcon = '${baseAsset}comment-regular.svg';
 }
