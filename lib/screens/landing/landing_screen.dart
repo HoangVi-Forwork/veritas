@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:veritas/resource/resource.dart';
 import 'package:veritas/screens/veritas_feed/veritas_feed_screen.dart';
+import 'package:veritas/utils/ui_utils.dart';
 
 import '../../resource/vts_styles.dart';
 import '../message_center/message_center_screen.dart';
@@ -45,10 +46,18 @@ class LandingScreen extends StatelessWidget {
       backgroundColor: VtsColors.primaryColor,
       title: Obx(
         () => landingController.selectedIndex.value == 1
-            ? Image.asset(
-                VtsDrawable.appLogo,
-                width: VtsDimens.w50 + 2,
-                height: VtsDimens.w50 + 2,
+            ? GestureDetector(
+                onTap: () {
+                  Get.bottomSheet(
+                    showAddPostWidget(),
+                    isScrollControlled: true,
+                  );
+                },
+                child: Image.asset(
+                  VtsDrawable.appLogo,
+                  width: VtsDimens.w50 + 2,
+                  height: VtsDimens.w50 + 2,
+                ),
               )
             : Text(
                 titles[landingController.selectedIndex.value],
@@ -62,6 +71,131 @@ class LandingScreen extends StatelessWidget {
       centerTitle: true,
     );
   }
+
+  Container showAddPostWidget() {
+    return Container(
+      constraints: const BoxConstraints(minHeight: 400),
+      height: 400,
+      width: double.infinity, // Độ rộng tự động
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16.0),
+          topRight: Radius.circular(16.0),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: const BoxDecoration(
+              color: Colors.green,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(16.0),
+                topRight: Radius.circular(16.0),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Row(
+                    children: [
+                      const CircleAvatar(
+                        radius: 12,
+                        backgroundImage: NetworkImage(
+                            'https://i.pinimg.com/564x/be/85/17/be8517b6c349be1eac892a436b0580f9.jpg'),
+                      ),
+                      UiUtil.horizontalSpace10,
+                      Text(
+                        'Public',
+                        style: VtsTextStyle.textStyleSmall.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                const Icon(
+                  Icons.send,
+                  size: 16,
+                )
+              ],
+            ),
+          ),
+          UiUtil.verticalSpace10,
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextFormField(
+              keyboardType: TextInputType.multiline,
+              minLines: 1,
+              maxLines: null,
+              decoration: const InputDecoration(
+                hintText: 'What\'s \non your mind?',
+                hintStyle: TextStyle(
+                  fontSize: 24,
+                  color: Colors.grey,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                ),
+                border: InputBorder.none,
+              ),
+            ),
+          ),
+          UiUtil.verticalSpace10,
+          GestureDetector(
+            onTap: () {},
+            child: Container(
+              height: 48,
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey.shade300,
+                ),
+              ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Icon(
+                    Icons.comment,
+                    size: 16,
+                    color: Colors.black,
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    'Mọi người có thể bình luận bài viết này?',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          UiUtil.verticalSpace10,
+          const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Row(
+              children: [
+                Icon(Icons.abc),
+                UiUtil.horizontalSpace12,
+                Icon(Icons.image),
+                UiUtil.horizontalSpace12,
+                Icon(Icons.location_on),
+                UiUtil.horizontalSpace12,
+                Icon(Icons.gif),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+  // endregion
 
   Stack landingBody(LandingController landingController, List<Widget> pages) {
     return Stack(
