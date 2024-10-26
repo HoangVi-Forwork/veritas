@@ -24,7 +24,6 @@ class SplashScreen extends StatelessWidget {
               width: VtsDimens.w125,
               height: VtsDimens.w125,
               decoration: const BoxDecoration(
-                color: Colors.white,
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(

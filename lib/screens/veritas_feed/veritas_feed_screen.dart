@@ -58,17 +58,25 @@ class VeritasFeedScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               GestureDetector(
-                                onTap: () => _showCommentSheet(
-                                    context), // Kích hoạt panel
+                                onTap: () => _showCommentSheet(context),
                                 child: SvgPicture.asset(
-                                  VtsDrawable.commentIcon,
+                                  VtsDrawable.icBookmarksLine,
+                                  width: 20,
+                                  height: 20,
+                                ),
+                              ),
+                              UiUtil.verticalSpace22,
+                              GestureDetector(
+                                onTap: () => _showCommentSheet(context),
+                                child: SvgPicture.asset(
+                                  VtsDrawable.icComment2Line,
                                   width: 20,
                                   height: 20,
                                 ),
                               ),
                               UiUtil.verticalSpace22,
                               SvgPicture.asset(
-                                VtsDrawable.heardIcon,
+                                VtsDrawable.icHeartLine,
                                 width: 20,
                                 height: 20,
                               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:veritas/resource/resource.dart';
 import 'package:veritas/screens/veritas_feed/veritas_feed_screen.dart';
@@ -44,22 +45,22 @@ class LandingScreen extends StatelessWidget {
       LandingController landingController, List<String> titles) {
     return AppBar(
       backgroundColor: VtsColors.primaryColor,
-      title: Obx(
-        () => landingController.selectedIndex.value == 1
-            ? GestureDetector(
-                onTap: () {
-                  Get.bottomSheet(
-                    showAddPostWidget(),
-                    isScrollControlled: true,
-                  );
-                },
-                child: Image.asset(
-                  VtsDrawable.appLogo,
-                  width: VtsDimens.w50 + 2,
-                  height: VtsDimens.w50 + 2,
+      title: Obx(() {
+        if (landingController.selectedIndex.value == 0) {
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                onTap: () {},
+                child: SvgPicture.asset(
+                  VtsDrawable.icGridLine,
+                  color: Colors.white,
+                  width: 16,
+                  height: 16,
                 ),
-              )
-            : Text(
+              ),
+              Text(
                 titles[landingController.selectedIndex.value],
                 textAlign: TextAlign.center,
                 style: VtsTextStyle.textStyleSmall.copyWith(
@@ -67,7 +68,56 @@ class LandingScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-      ),
+              GestureDetector(
+                onTap: () {},
+                child: SvgPicture.asset(
+                  VtsDrawable.icSearchLine,
+                  color: Colors.white,
+                  width: 16,
+                  height: 16,
+                ),
+              ),
+            ],
+          );
+        } else if (landingController.selectedIndex.value == 1) {
+          return GestureDetector(
+            onTap: () {
+              Get.bottomSheet(
+                showAddPostWidget(),
+                isScrollControlled: true,
+              );
+            },
+            child: Image.asset(
+              VtsDrawable.appLogo,
+              width: VtsDimens.w50 + 2,
+              height: VtsDimens.w50 - 2,
+            ),
+          );
+        } else if (landingController.selectedIndex.value == 2) {
+          return Text(
+            titles[landingController.selectedIndex.value],
+            textAlign: TextAlign.center,
+            style: VtsTextStyle.textStyleSmall.copyWith(
+              color: VtsColors.textLightColor,
+              fontWeight: FontWeight.bold,
+            ),
+          );
+        } else if (landingController.selectedIndex.value == 3) {
+          return Text(
+            titles[landingController.selectedIndex.value],
+            textAlign: TextAlign.center,
+            style: VtsTextStyle.textStyleSmall.copyWith(
+              color: VtsColors.textLightColor,
+              fontWeight: FontWeight.bold,
+            ),
+          );
+        }
+        return Image.asset(
+          VtsDrawable.appLogo,
+          width: VtsDimens.w50 + 2,
+          height: VtsDimens.w50 + 2,
+        );
+      }),
       centerTitle: true,
     );
   }
@@ -76,7 +126,7 @@ class LandingScreen extends StatelessWidget {
     return Container(
       constraints: const BoxConstraints(minHeight: 400),
       height: 400,
-      width: double.infinity, // Độ rộng tự động
+      width: double.infinity,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
@@ -119,9 +169,9 @@ class LandingScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Icon(
-                  Icons.send,
-                  size: 16,
+                SvgPicture.asset(
+                  VtsDrawable.icSendPlaneLine,
+                  color: Colors.white,
                 )
               ],
             ),
@@ -218,7 +268,7 @@ class LandingScreen extends StatelessWidget {
         Positioned(
           left: 0,
           right: 0,
-          bottom: 8,
+          bottom: 12,
           child: Obx(() {
             return AnimatedOpacity(
               opacity: landingController.isScrollingUp.value ? 1.0 : 0.0,
@@ -227,39 +277,61 @@ class LandingScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   height: VtsDimens.heighOfButton56,
+                  margin: const EdgeInsets.only(
+                    left: VtsDimens.margin30 + 6,
+                    right: VtsDimens.margin30 + 6,
+                  ),
                   decoration: BoxDecoration(
                     color: VtsColors.primaryColor,
-                    borderRadius: BorderRadius.circular(12.0),
+                    borderRadius: BorderRadius.circular(28.0),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: List.generate(
                       4,
                       (index) {
-                        IconData icon;
+                        String? icon;
                         switch (index) {
                           case 0:
-                            icon = Icons.message;
+                            icon = VtsDrawable.icChat3Line;
                             break;
                           case 1:
-                            icon = Icons.newspaper;
+                            icon = VtsDrawable.icGlobe2Line;
                             break;
                           case 2:
-                            icon = Icons.search;
+                            icon = VtsDrawable.icSearchLine;
                             break;
                           case 3:
-                            icon = Icons.person;
+                            icon = VtsDrawable.icUser1Line;
                             break;
                           default:
-                            icon = Icons.star;
+                            icon = VtsDrawable.icGlobe2Line;
                             break;
                         }
-                        return IconButton(
-                          icon: Icon(icon),
-                          color: landingController.selectedIndex.value == index
-                              ? Colors.white
-                              : Colors.white.withOpacity(0.6),
-                          onPressed: () => landingController.changePage(index),
+                        var isSelectPage =
+                            index == landingController.selectedIndex.value;
+                        return GestureDetector(
+                          onTap: () => landingController.changePage(index),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  icon,
+                                  color:
+                                      isSelectPage ? Colors.white : Colors.grey,
+                                ),
+                                UiUtil.verticalSpace2,
+                                if (isSelectPage)
+                                  Container(
+                                    width: 6,
+                                    height: 2,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(2),
+                                    ),
+                                  ),
+                              ]),
                         );
                       },
                     ),
@@ -270,7 +342,7 @@ class LandingScreen extends StatelessWidget {
           }),
         ),
         // Todo: later development
-        /* Positioned(
+        /*Positioned(
           right: VtsDimens.margin16,
           bottom: VtsDimens.margin16 +
               VtsDimens.heighOfButton56 +
